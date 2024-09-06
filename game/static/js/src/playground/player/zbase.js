@@ -2,6 +2,7 @@ class Player extends AcGameObject {
     constructor(playground, x, y, radius, color, speed, is_me){
         super();
         this.playground = playground;
+        this.ctx = this.playground.game_map.ctx;
         this.x = x;
         this.y = y;
         this.vx = 0;
@@ -9,6 +10,7 @@ class Player extends AcGameObject {
         this.move_length = 0;
         this.radius = radius;
         this.speed = speed;
+        this.color = color;
         this.is_me = is_me;
         this.eps = 0.1;
     }

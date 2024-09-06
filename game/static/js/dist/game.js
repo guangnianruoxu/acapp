@@ -136,6 +136,7 @@ class Player extends AcGameObject {
     constructor(playground, x, y, radius, color, speed, is_me){
         super();
         this.playground = playground;
+        this.ctx = this.playground.game_map.ctx;
         this.x = x;
         this.y = y;
         this.vx = 0;
@@ -143,6 +144,7 @@ class Player extends AcGameObject {
         this.move_length = 0;
         this.radius = radius;
         this.speed = speed;
+        this.color = color;
         this.is_me = is_me;
         this.eps = 0.1;
     }
@@ -186,6 +188,7 @@ class Player extends AcGameObject {
             let moved = Math.min(this.move_length, this.speed * this.timedelta / 1000);
             this.x += this.vx * moved;
             this.y += this.vy * moved;
+            this.move_length -= moved;
         }
         this.render();
     }
@@ -208,12 +211,13 @@ class AcGamePlayground {
         this.height = this.$playground.height();
         this.game_map = new GameMap(this);
         this.players = [];
-        this.players.push(new Player(this, this.width / 2, this.height / 2, this.height * 0.05, "white", this.height * 0.15, true));
+        this.players.push(new Player(this, this.width / 2, this.height / 2, this.height * 0.05, 'white', this.height * 0.15, true));
 
         this.start();
     }
 
     start(){
+        //this.hide();
     }
 
     update(){
